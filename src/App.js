@@ -2,17 +2,40 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+
+/* Declarar componentes */
+
+/* Forma 1 */
+// function Hello (props) {
+//   return <h2>{ props.title }</h2>
+// }
+
+/* Forma 2 */
+// const Hello = (props) => <h2>{props.title}</h2>
+
+/* Forma 3 */
+class Hello extends Component {
+  render () {
+    return <h2>{this.props.title}</h2>
+  }
+}
+
+class Text extends Component {
+  render () {
+    return <p>{this.props.text}</p>
+  }
+}
+
+
 class App extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Bienvenidos a este curso</h1>
+          <Hello title='Hello'/>
         </header>
-        <h3>Vamos a aprender React</h3>
-        <p>Hola mundo, using react</p>
-        <strong>Esto es strong</strong>
+        <Text text='Hola'/>
       </div>
     );
   }
