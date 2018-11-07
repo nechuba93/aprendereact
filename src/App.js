@@ -22,7 +22,26 @@ class Hello extends Component {
 
 class Text extends Component {
   render () {
-    return <p>{this.props.text}</p>
+    //Declaración de props, simplifica referencias
+    const { 
+      arrayOfNumber, 
+      multiply,
+      objectWithinfo,
+      title
+    } = this.props
+
+    // const textoSegunBool = this.props.boolean ? 'Cierto' : ' Falso'
+    const mappedNumbers = arrayOfNumber.map(multiply)
+    return (
+      <div>
+        {title}
+        <p>{mappedNumbers.join(', ')}</p>
+        <p>{objectWithinfo.key}</p>
+        {/* <p>{this.props.text}</p>
+        <p>{this.props.number}</p>
+        <p>{textoSegunBool}</p> */}
+      </div>
+    )
   }
 }
 
@@ -33,9 +52,16 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <Hello title='Hello'/>
+          <Hello title='TestHello'  />
         </header>
-        <Text text='Hola'/>
+        <Text 
+          arrayOfNumber={[2, 3, 10]}
+          objectWithinfo={{ key: 'valu', key2: 'otherValue' }}
+          boolean={false} 
+          multiply={(number) => number * 4}
+          number={2} 
+          text='TestText' 
+          title={<h1>Este es el titulo</h1>}/>
       </div>
     );
   }
