@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
-import cars from './data/cars.json'
 import './App.css';
 
 class App extends Component {
-  render() {
+  handleCLick(e) {
+    console.log(e);
+    alert("hola");
+  }
 
+
+  render() {
     return (
       <div className="App">
         <h4>Eventos</h4>
-        <button onClick={() => alert('hola')}>Hola</button>
+        <button onClick={this.handleCLick}>Hola</button>
       </div>
     );
   }
