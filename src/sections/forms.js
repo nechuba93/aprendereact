@@ -1,15 +1,25 @@
 import React, { Component } from 'react'
 
 export default class Forms extends Component {
+  constructor() {
+    super()
+    this.state = {
+      inputName: '',
+      inputTwitter: '@',
+      inputTerms: true
+    }
+  }
+
   handleSubmit = (e)  =>{
     e.preventDefault();
-    const name = this.inputName.value
-    const email = document.getElementById('twitter').value
-    console.log({ name, email })
+    console.log(this.state)
   }
+
   handleChange = (e) => {
     console.log(e.target.checked)
+    this.setState({inputTerms: e.target.checked})
   }
+
   render() {
     return (
       <div>
@@ -20,8 +30,10 @@ export default class Forms extends Component {
             <input
               id='name'
               name='userName'
+              onChange={e => this.setState({inputName: e.target.value})}
               placeholder='Introduce el nombre' 
-              ref={inputElement => this.inputName = inputElement}/>
+              ref={inputElement => this.inputName = inputElement}
+              value={this.state.inputName}/>
           </p>
 
           <p>
@@ -29,12 +41,17 @@ export default class Forms extends Component {
             <input
               id='twitter'
               name='twitterAccount'
-              placeholder='Introduce tu Twitter' />
+              onChange={e => this.setState({inputTwitter: e.target.value})}
+              placeholder='Introduce tu Twitter' 
+              value={this.state.inputTwitter}/>
           </p>
 
           <p>
             <label>
-              <input type='checkbox' onChange={this.handleChange} />
+              <input 
+                type='checkbox' 
+                onChange={this.handleChange} 
+                checked={this.state.inputTerms}/>
               Acepto
             </label>
           </p>
