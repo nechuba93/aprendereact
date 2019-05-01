@@ -1,27 +1,27 @@
 import React, { Component } from "react";
 import "./App.css";
-import Forms from './sections/forms';
+import PropTypes from 'prop-types';
 
-
-class Box extends Component {
-  render() {
-    return (
-      <div style= {{border: '1px solid #000', margin: 5, padding: 5}}>
-        {this.props.children}
-      </div>
-    )
-  }
-}
 
 class Article extends Component {
+  static propTypes = {
+    author: PropTypes.string.isRequired
+  }
+  constructor(props) {
+    super(props)
+    if(typeof props.author === 'undefined'){
+      console.warn("prop required");
+    }
+  }
   render() {
+    const {author, children, date, title} = this.props
     return (
       <section>
-        <h2>{this.props.title}</h2>
-        <p><em>Escrito por {this.props.author}</em></p>
-        <Box>{this.props.date}</Box>
+        <h2>{title}</h2>
+        {author && <p><em>Escrito por {author}</em></p>}
+        <time>{date}</time>
         <article>
-          {this.props.children}
+          {children}
         </article>
       </section>
     )
