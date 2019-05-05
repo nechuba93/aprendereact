@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PureComponent } from 'react'
 import PropTypes from 'prop-types'
 
 const ANIMAL_IMAGES = {
@@ -9,7 +9,7 @@ const ANIMAL_IMAGES = {
 
 const ANIMALS = Object.keys(ANIMAL_IMAGES);
 
-class AnimalImage extends Component {
+class AnimalImage extends PureComponent {
     state = { src: ANIMAL_IMAGES[this.props.animal] }
 
     componentWillReceiveProps(nextProps) {
@@ -18,13 +18,6 @@ class AnimalImage extends Component {
         console.log('1. componentWillReceiveProps')
         console.log(nextProps)
         this.setState({ src: ANIMAL_IMAGES[nextProps.animal] })
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log('2. shouldComponentUpdate')
-        console.log('anterior:', this.props.animal)
-        console.log('nuevo:', nextProps.animal)
-        return this.props.animal !== nextProps.animal
     }
 
     render() {
